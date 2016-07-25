@@ -402,7 +402,7 @@ public abstract class AbstractGitFlowMojo extends AbstractMojo {
             CommandLineException {
         getLog().info("Committing changes.");
 
-        executeGitCommand("commit", "-a", "-m", StringUtils.trimToEmpty(message.replace("{}", StringUtils.trimToEmpty(parameter))));
+        executeGitCommand("commit", "-a", "-m", StringUtils.trim(message.replace("{}", StringUtils.trim(parameter == null ? "" : parameter))));
     }
 
     /**
@@ -555,7 +555,7 @@ public abstract class AbstractGitFlowMojo extends AbstractMojo {
             CommandLineException {
         if (StringUtils.isNotEmpty(goals)) {
             getLog().info("Executing maven goals: {}", goals);
-            executeMvnCommand((StringUtils.trim(goals + " " + StringUtils.trimToEmpty(arguments)).replace("  ", " ").split(" ")));
+            executeMvnCommand((StringUtils.trim(goals + " " + StringUtils.trim(arguments === null ? "" : arguments)).replace("  ", " ").split(" ")));
         }
     }
 
