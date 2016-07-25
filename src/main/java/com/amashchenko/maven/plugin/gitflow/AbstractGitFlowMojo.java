@@ -500,9 +500,9 @@ public abstract class AbstractGitFlowMojo extends AbstractMojo {
                     + version, "-Dtycho.mode=maven");
         } else {
             executeMvnCommand(VERSIONS_MAVEN_PLUGIN_SET_GOAL, "--batch-mode", "-DdevelopmentVersion="
-                    + version, "-DautoVersionSubmodules=true");
+                    + version + ".temp", "-DautoVersionSubmodules=true");
             getLog().info("Running sed...");
-            // executeCommand(sedMvn, true, "-i", "s/" + version+ ".TEMP-SNAPHOT" + "/" + version + "/g", "**/pom.xml");
+            executeCommand(sedMvn, true, "-i", "s/" + version + ".temp-SNAPSHOT" + "/" + version + "/g", "**/pom.xml");
         }
     }
 
