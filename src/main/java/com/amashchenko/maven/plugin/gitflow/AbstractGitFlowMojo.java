@@ -43,9 +43,9 @@ import org.codehaus.plexus.util.cli.Commandline;
 public abstract class AbstractGitFlowMojo extends AbstractMojo {
 
     /** A full name of the versions-maven-plugin set goal. */
-    private static final String VERSIONS_MAVEN_PLUGIN_SET_GOAL = "org.codehaus.mojo:versions-maven-plugin:2.2:set org.codehaus.mojo:versions-maven-plugin:2.2:update-child-modules";
+    private static final String VERSIONS_MAVEN_PLUGIN_SET_GOAL = "org.apache.maven.plugins:maven-release-plugin:2.5.3:update-versions";
     /** Name of the tycho-versions-plugin set-version goal. */
-    private static final String TYCHO_VERSIONS_PLUGIN_SET_GOAL = "org.eclipse.tycho:tycho-versions-plugin:set-version org.codehaus.mojo:versions-maven-plugin:2.2:update-child-modules";
+    private static final String TYCHO_VERSIONS_PLUGIN_SET_GOAL = "org.eclipse.tycho:tycho-versions-plugin:set-version";
 
     /** System line separator. */
     protected static final String LS = System.getProperty("line.separator");
@@ -495,8 +495,9 @@ public abstract class AbstractGitFlowMojo extends AbstractMojo {
             executeMvnCommand(TYCHO_VERSIONS_PLUGIN_SET_GOAL, "-DnewVersion="
                     + version, "-Dtycho.mode=maven");
         } else {
-            executeMvnCommand(VERSIONS_MAVEN_PLUGIN_SET_GOAL, "-DnewVersion="
-                    + version, "-DgenerateBackupPoms=false");
+            executeMvnCommand(VERSIONS_MAVEN_PLUGIN_SET_GOAL, "-DdevelopmentVersion="
+                    + version+ ".TEMP", " -DautoVersionSubmodules=true");
+            executeCommand("sed", true, "-i", "s/" + version+ ".TEMP-SNAPHOT" + "/" + version +"/g", "**/pom.xml");
         }
     }
 
