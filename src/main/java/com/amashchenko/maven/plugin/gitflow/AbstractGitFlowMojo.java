@@ -143,7 +143,7 @@ public abstract class AbstractGitFlowMojo extends AbstractMojo {
             }
             cmdGit.setExecutable(gitExecutable);
         }
-        sedMvn.setExecutable("sed);
+        sedMvn.setExecutable("sed");
     }
 
     /**
