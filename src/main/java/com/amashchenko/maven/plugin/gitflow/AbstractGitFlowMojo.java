@@ -393,10 +393,12 @@ public abstract class AbstractGitFlowMojo extends AbstractMojo {
      *
      * @param message
      *            Commit message.
+     * @param parameter
+     *            Optional parameter message.
      * @throws MojoFailureException
      * @throws CommandLineException
      */
-    protected void gitCommit(final String message, parameter) throws MojoFailureException,
+    protected void gitCommit(final String message, String parameter) throws MojoFailureException,
             CommandLineException {
         getLog().info("Committing changes.");
 
