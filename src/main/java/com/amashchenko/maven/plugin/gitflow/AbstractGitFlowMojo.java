@@ -553,7 +553,7 @@ public abstract class AbstractGitFlowMojo extends AbstractMojo {
             CommandLineException {
         if (StringUtils.isNotEmpty(goals)) {
             getLog().info("Executing maven goals: {}", goals);
-            executeMvnCommand((StringUtils.trim(goals + " " + StringUtils.trimToEmpty(arguments)).replace("  ", " ").split(" "));
+            executeMvnCommand((StringUtils.trim(goals + " " + StringUtils.trimToEmpty(arguments)).replace("  ", " ").split(" ")));
         }
     }
 
