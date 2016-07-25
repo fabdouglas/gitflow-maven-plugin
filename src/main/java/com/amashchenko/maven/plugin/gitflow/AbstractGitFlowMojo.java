@@ -402,7 +402,7 @@ public abstract class AbstractGitFlowMojo extends AbstractMojo {
             CommandLineException {
         getLog().info("Committing changes.");
 
-        executeGitCommand("commit", "-a", "-m", StringUtils.trimToEmpty(message.replace("{}", StringUtils.trimToEmpty(parameter)));
+        executeGitCommand("commit", "-a", "-m", StringUtils.trimToEmpty(message.replace("{}", StringUtils.trimToEmpty(parameter))));
     }
 
     /**
