@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.0.0
+
+* Added `goals` and `arguments` parameters behaving like those of [maven-release-plugin](http://maven.apache.org/maven-release/maven-release-plugin/perform-mojo.html) and replace the deleted `installProject`
+* Fixed propagation of the version to aggregated submodules having no inheritance. Use   [maven-release-plugin:update-versions](http://maven.apache.org/maven-release/maven-release-plugin/update-versions-mojo.html) instead of [versions-maven-plugin:set](http://www.mojohaus.org/versions-maven-plugin/set-mojo.html). Used only for non-Tycho projects.
+
 ## v1.2.3
 
 * Added `featureSquash` parameter which allows to squash feature commits (see [#17](https://github.com/aleksandr-m/gitflow-maven-plugin/issues/17))

@@ -16,13 +16,13 @@ See what's changed - [CHANGELOG](CHANGELOG.md)
 # Installation
 
 The plugin is available from Maven central.
-    
+
     <build>
         <plugins>
             <plugin>
                 <groupId>com.amashchenko.maven.plugin</groupId>
                 <artifactId>gitflow-maven-plugin</artifactId>
-                <version>1.2.3</version>
+                <version>2.0.0</version>
                 <configuration>
                     <!-- optional configuration -->
                 </configuration>
@@ -48,7 +48,7 @@ The plugin is available from Maven central.
 Since version `1.1.0` this plugin supports Eclipse plugin projects which are build with [Tycho](https://eclipse.org/tycho/).
 To enable this feature put `<tychoBuild>true</tychoBuild>` into `<configuration>` section of this plugin in your pom.xml file.
 
-### Features of `tychoBuild` 
+### Features of `tychoBuild`
 
 The [`tycho-versions-plugin`](https://eclipse.org/tycho/sitedocs/tycho-release/tycho-versions-plugin/plugin-info.html) Maven plugin will be used to set versions instead of [`versions-maven-plugin`](http://www.mojohaus.org/versions-maven-plugin/).
 
@@ -61,14 +61,15 @@ If version has qualifier then it will not be removed in the release or hotfix go
 
 All parameters are optional. The `gitFlowConfig` parameters defaults are the same as in below example.
 Maven and Git executables are assumed to be in the PATH, if executables are not available in the PATH or you want to use different version use `mvnExecutable` and `gitExecutable` parameters.
-The `installProject` parameter controls whether the Maven `install` goal will be called during the mojo execution. The default value for this parameter is `false` (i.e. the project will NOT be installed).
+The `goals` and `arguments` parameter controls whether the Maven goals will be called during the mojo execution at the end of the `-start` mojos and at the middle of `release` mojo. By default, nothing is done.
 Since `1.0.7` version of this plugin the output of the executed commands will NOT be printed into the console. This can be changed by setting `verbose` parameter to `true`.
 
     <configuration>
         <mvnExecutable>path_to_maven_executable</mvnExecutable>
         <gitExecutable>path_to_git_executable</gitExecutable>
 
-        <installProject>false</installProject>
+        <goals>clean deploy</goals>
+        <arguments>-Pminify -Dfoo=bar</arguments>
         <verbose>false</verbose>
 
         <gitFlowConfig>
@@ -94,19 +95,19 @@ Since `1.2.1` commit messages can be changed in plugin's configuration section i
         <commitMessages>
             <featureStartMessage>updating versions for feature branch</featureStartMessage>
             <featureFinishMessage>updating versions for development branch</featureFinishMessage>
-            
+
             <hotfixStartMessage>updating versions for hotfix</hotfixStartMessage>
             <hotfixFinishMessage>updating for next development version</hotfixFinishMessage>
-            
+
             <releaseStartMessage>updating versions for release</releaseStartMessage>
             <releaseFinishMessage>updating for next development version</releaseFinishMessage>
-            
+
             <tagHotfixMessage>tagging hotfix</tagHotfixMessage>
             <tagReleaseMessage>tagging release</tagReleaseMessage>
         </commitMessages>
     </configuration>
 
-Maven properties can be used in commit messages. For example `<featureStartMessage>updating ${artifactId} project for feature branch</featureStartMessage>` will produce message where 
+Maven properties can be used in commit messages. For example `<featureStartMessage>updating ${artifactId} project for feature branch</featureStartMessage>` will produce message where
 `${artifactId}` will be substituted for projects `<artifactId>`.
 
 Note that although `${project.version}` can be used any changes to version introduced by this goal won't be reflected in a commit message for this goal.
@@ -144,7 +145,7 @@ When `gitflow:release-start` is executed in the Maven batch mode the default rel
 To put Maven in the batch mode use `-B` or `--batch-mode` option.
 
     mvn -B gitflow:release-start gitflow:release-finish
-    
+
 To release w/o creating separate release branch use `gitflow:release` goal.
 
     mvn -B gitflow:release
