@@ -1,4 +1,4 @@
-<!-- 
+<!--
 /*
  * Copyright 2014-2016 Aleksandr Mashchenko.
  *
@@ -21,10 +21,10 @@
     <artifactId>gitflow-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
     <name>gitflow-maven-plugin</name>
-    <version>1.2.4-SNAPSHOT</version>
+    <version>1.2.4</version>
 
     <description>Git-Flow Maven Plugin, which runs Git and Maven commands from the command line. Supports Eclipse Plugins build with Tycho.</description>
- 
+
     <inceptionYear>2014</inceptionYear>
 
     <licenses>
@@ -33,22 +33,25 @@
             <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
             <distribution>repo</distribution>
         </license>
-    </licenses> 
+    </licenses>
 
     <developers>
         <developer>
             <name>Aleksandr Mashchenko</name>
         </developer>
+        <developer>
+            <name>Fabrice Daugan</name>
+        </developer>
     </developers>
 
     <url>${url}</url>
- 
+
     <scm>
         <url>${url}</url>
         <connection>${scm.url}</connection>
         <developerConnection>${scm.url}</developerConnection>
     </scm>
-    
+
     <distributionManagement>
         <repository>
             <id>sonatype-nexus-staging</id>
@@ -63,10 +66,10 @@
     </distributionManagement>
 
     <properties>
-        <java.version>1.6</java.version>
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <scm.url>scm:git:git@github.com:aleksandr-m/gitflow-maven-plugin.git</scm.url>
-        <url>https://github.com/aleksandr-m/gitflow-maven-plugin</url>
+        <scm.url>scm:git:git@github.com:fabdouglas/gitflow-maven-plugin.git</scm.url>
+        <url>https://github.com/fabdouglas/gitflow-maven-plugin</url>
         <maven-plugin-plugin.version>3.4</maven-plugin-plugin.version>
     </properties>
 
