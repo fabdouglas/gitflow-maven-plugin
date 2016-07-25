@@ -29,7 +29,7 @@ import org.codehaus.plexus.util.cli.CommandLineException;
 
 /**
  * The git flow release mojo.
- * 
+ *
  * @author Aleksandr Mashchenko
  * @since 1.2.0
  */
@@ -42,7 +42,7 @@ public class GitFlowReleaseMojo extends AbstractGitFlowMojo {
 
     /**
      * Whether to skip calling Maven test goal before releasing.
-     * 
+     *
      * @since 1.0.5
      */
     @Parameter(property = "skipTestProject", defaultValue = "false")
@@ -51,7 +51,7 @@ public class GitFlowReleaseMojo extends AbstractGitFlowMojo {
     /**
      * Whether to rebase branch or merge. If <code>true</code> then rebase will
      * be performed.
-     * 
+     *
      * @since 1.2.3
      */
     @Parameter(property = "releaseRebase", defaultValue = "false")
@@ -59,7 +59,7 @@ public class GitFlowReleaseMojo extends AbstractGitFlowMojo {
 
     /**
      * Whether to use <code>--no-ff</code> option when merging.
-     * 
+     *
      * @since 1.2.3
      */
     @Parameter(property = "releaseMergeNoFF", defaultValue = "true")
@@ -162,6 +162,9 @@ public class GitFlowReleaseMojo extends AbstractGitFlowMojo {
                         commitMessages.getTagReleaseMessage());
             }
 
+            // Proceed to the intercourse deployment as needed
+            mvnGoals();
+
             // git checkout develop
             gitCheckout(gitFlowConfig.getDevelopmentBranch());
 
@@ -188,11 +191,6 @@ public class GitFlowReleaseMojo extends AbstractGitFlowMojo {
 
             // git commit -a -m updating for next development version
             gitCommit(commitMessages.getReleaseFinishMessage());
-
-            if (installProject) {
-                // mvn clean install
-                mvnCleanInstall();
-            }
         } catch (CommandLineException e) {
             getLog().error(e);
         }

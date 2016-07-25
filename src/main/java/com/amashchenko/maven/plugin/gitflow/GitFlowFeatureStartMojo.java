@@ -28,9 +28,9 @@ import org.codehaus.plexus.util.cli.CommandLineException;
 
 /**
  * The git flow feature start mojo.
- * 
+ *
  * @author Aleksandr Mashchenko
- * 
+ *
  */
 @Mojo(name = "feature-start", aggregator = true)
 public class GitFlowFeatureStartMojo extends AbstractGitFlowMojo {
@@ -38,7 +38,7 @@ public class GitFlowFeatureStartMojo extends AbstractGitFlowMojo {
     /**
      * Whether to skip changing project version. Default is <code>false</code>
      * (the feature name will be appended to project version).
-     * 
+     *
      * @since 1.0.5
      */
     @Parameter(property = "skipFeatureVersion", defaultValue = "false")
@@ -106,10 +106,7 @@ public class GitFlowFeatureStartMojo extends AbstractGitFlowMojo {
                 }
             }
 
-            if (installProject) {
-                // mvn clean install
-                mvnCleanInstall();
-            }
+            mvnGoals();
         } catch (CommandLineException e) {
             getLog().error(e);
         }

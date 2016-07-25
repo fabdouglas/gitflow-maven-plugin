@@ -82,12 +82,20 @@ public abstract class AbstractGitFlowMojo extends AbstractMojo {
     protected boolean tychoBuild;
 
     /**
-     * Whether to call Maven install goal during the mojo execution.
+     * Additional arguments to pass to the Maven executions, separated by spaces. For sample "-Pminify,prod -Dfoo=bar"
      *
-     * @since 1.0.5
+     * @since 2.0.0
      */
-    @Parameter(property = "installProject", defaultValue = "false")
-    protected boolean installProject = false;
+    @Parameter(property = "arguments")
+    protected String arguments;
+
+    /**
+     * A space separated list of goals to execute on deployment. For sample "clean deploy".
+     *
+     * @since 2.0.0
+     */
+    @Parameter(property = "goals")
+    protected String goals;
 
     /**
      * Whether to allow SNAPSHOT versions in dependencies.
@@ -501,7 +509,7 @@ public abstract class AbstractGitFlowMojo extends AbstractMojo {
         } else {
             executeMvnCommand(VERSIONS_MAVEN_PLUGIN_SET_GOAL, "--batch-mode", "-DdevelopmentVersion="
                     + "0.0.0-SNAPSHOT", "-DautoVersionSubmodules=true");
-            getLog().info("Running sed...");
+            getLog().info("Fixing pom version to " + version);
             executeCommand(sedMvn, true, ".", "-type", "f", "-name", "pom.xml", "-exec", "sed", "-i", "s/0.0.0-SNAPSHOT/" + version + "/g", "{}", "+");
         }
     }
@@ -523,16 +531,17 @@ public abstract class AbstractGitFlowMojo extends AbstractMojo {
     }
 
     /**
-     * Executes mvn clean install.
+     * Executes mvn clean install or whatever goals.
      *
      * @throws MojoFailureException
      * @throws CommandLineException
      */
-    protected void mvnCleanInstall() throws MojoFailureException,
+    protected void mvnGoals() throws MojoFailureException,
             CommandLineException {
-        getLog().info("Cleaning and installing the project.");
-
-        executeMvnCommand("clean", "install");
+        if (StringUtils.isNotEmpty(goals)) {
+            getLog().info("Executing maven goals: {}", goals);
+            executeMvnCommand((StringUtils.trim(goals + " " + StringUtils.trimToEmpty(arguments)).replace("  ", " ").split(" "));
+        }
     }
 
     /**

@@ -28,9 +28,9 @@ import org.codehaus.plexus.util.cli.CommandLineException;
 
 /**
  * The git flow feature finish mojo.
- * 
+ *
  * @author Aleksandr Mashchenko
- * 
+ *
  */
 @Mojo(name = "feature-finish", aggregator = true)
 public class GitFlowFeatureFinishMojo extends AbstractGitFlowMojo {
@@ -41,7 +41,7 @@ public class GitFlowFeatureFinishMojo extends AbstractGitFlowMojo {
 
     /**
      * Whether to skip calling Maven test goal before merging the branch.
-     * 
+     *
      * @since 1.0.5
      */
     @Parameter(property = "skipTestProject", defaultValue = "false")
@@ -50,7 +50,7 @@ public class GitFlowFeatureFinishMojo extends AbstractGitFlowMojo {
     /**
      * Whether to squash feature branch commits into a single commit upon
      * merging.
-     * 
+     *
      * @since 1.2.3
      */
     @Parameter(property = "featureSquash", defaultValue = "false")
@@ -138,11 +138,6 @@ public class GitFlowFeatureFinishMojo extends AbstractGitFlowMojo {
 
                 // git commit -a -m updating versions for development branch
                 gitCommit(commitMessages.getFeatureFinishMessage());
-            }
-
-            if (installProject) {
-                // mvn clean install
-                mvnCleanInstall();
             }
 
             if (!keepBranch) {

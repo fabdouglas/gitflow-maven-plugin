@@ -28,9 +28,9 @@ import org.codehaus.plexus.util.cli.CommandLineException;
 
 /**
  * The git flow release finish mojo.
- * 
+ *
  * @author Aleksandr Mashchenko
- * 
+ *
  */
 @Mojo(name = "release-finish", aggregator = true)
 public class GitFlowReleaseFinishMojo extends AbstractGitFlowMojo {
@@ -45,7 +45,7 @@ public class GitFlowReleaseFinishMojo extends AbstractGitFlowMojo {
 
     /**
      * Whether to skip calling Maven test goal before merging the branch.
-     * 
+     *
      * @since 1.0.5
      */
     @Parameter(property = "skipTestProject", defaultValue = "false")
@@ -54,7 +54,7 @@ public class GitFlowReleaseFinishMojo extends AbstractGitFlowMojo {
     /**
      * Whether to rebase branch or merge. If <code>true</code> then rebase will
      * be performed.
-     * 
+     *
      * @since 1.2.3
      */
     @Parameter(property = "releaseRebase", defaultValue = "false")
@@ -62,7 +62,7 @@ public class GitFlowReleaseFinishMojo extends AbstractGitFlowMojo {
 
     /**
      * Whether to use <code>--no-ff</code> option when merging.
-     * 
+     *
      * @since 1.2.3
      */
     @Parameter(property = "releaseMergeNoFF", defaultValue = "true")
@@ -148,11 +148,6 @@ public class GitFlowReleaseFinishMojo extends AbstractGitFlowMojo {
 
             // git commit -a -m updating for next development version
             gitCommit(commitMessages.getReleaseFinishMessage());
-
-            if (installProject) {
-                // mvn clean install
-                mvnCleanInstall();
-            }
 
             if (!keepBranch) {
                 // git branch -d release/...

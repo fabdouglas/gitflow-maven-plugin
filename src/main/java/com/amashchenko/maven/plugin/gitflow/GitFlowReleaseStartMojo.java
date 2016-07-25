@@ -27,9 +27,9 @@ import org.codehaus.plexus.util.cli.CommandLineException;
 
 /**
  * The git flow release start mojo.
- * 
+ *
  * @author Aleksandr Mashchenko
- * 
+ *
  */
 @Mojo(name = "release-start", aggregator = true)
 public class GitFlowReleaseStartMojo extends AbstractGitFlowMojo {
@@ -39,11 +39,11 @@ public class GitFlowReleaseStartMojo extends AbstractGitFlowMojo {
      * Default is <code>false</code>, i.e. project version will be added to
      * release branch prefix. <br/>
      * <br/>
-     * 
+     *
      * Note: By itself the default releaseBranchPrefix is not a valid branch
      * name. You must change it when setting sameBranchName to <code>true</code>
      * .
-     * 
+     *
      * @since 1.2.0
      */
     @Parameter(property = "sameBranchName", defaultValue = "false")
@@ -133,10 +133,7 @@ public class GitFlowReleaseStartMojo extends AbstractGitFlowMojo {
                 gitCommit(commitMessages.getReleaseStartMessage());
             }
 
-            if (installProject) {
-                // mvn clean install
-                mvnCleanInstall();
-            }
+            mvnGoals();
         } catch (CommandLineException e) {
             getLog().error(e);
         }

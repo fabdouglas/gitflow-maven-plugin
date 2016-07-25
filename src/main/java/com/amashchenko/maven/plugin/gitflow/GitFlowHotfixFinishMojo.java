@@ -32,9 +32,9 @@ import org.codehaus.plexus.util.cli.CommandLineException;
 
 /**
  * The git flow hotfix finish mojo.
- * 
+ *
  * @author Aleksandr Mashchenko
- * 
+ *
  */
 @Mojo(name = "hotfix-finish", aggregator = true)
 public class GitFlowHotfixFinishMojo extends AbstractGitFlowMojo {
@@ -49,7 +49,7 @@ public class GitFlowHotfixFinishMojo extends AbstractGitFlowMojo {
 
     /**
      * Whether to skip calling Maven test goal before merging the branch.
-     * 
+     *
      * @since 1.0.5
      */
     @Parameter(property = "skipTestProject", defaultValue = "false")
@@ -173,11 +173,6 @@ public class GitFlowHotfixFinishMojo extends AbstractGitFlowMojo {
 
                 // git commit -a -m updating for next development version
                 gitCommit(commitMessages.getHotfixFinishMessage());
-            }
-
-            if (installProject) {
-                // mvn clean install
-                mvnCleanInstall();
             }
 
             if (!keepBranch) {
