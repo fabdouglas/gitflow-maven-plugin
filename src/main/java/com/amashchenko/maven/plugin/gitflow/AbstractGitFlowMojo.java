@@ -58,6 +58,9 @@ public abstract class AbstractGitFlowMojo extends AbstractMojo {
     /** Command line for Maven executable. */
     private final Commandline cmdMvn = new Commandline();
 
+    /** Command line for Sed executable. */
+    private final Commandline sedMvn = new Commandline();
+
     /** Git flow configuration. */
     @Parameter(defaultValue = "${gitFlowConfig}")
     protected GitFlowConfig gitFlowConfig;
@@ -140,6 +143,7 @@ public abstract class AbstractGitFlowMojo extends AbstractMojo {
             }
             cmdGit.setExecutable(gitExecutable);
         }
+        sedMvn.setExecutable("sed);
     }
 
     /**
@@ -497,7 +501,7 @@ public abstract class AbstractGitFlowMojo extends AbstractMojo {
         } else {
             executeMvnCommand(VERSIONS_MAVEN_PLUGIN_SET_GOAL, "-DdevelopmentVersion="
                     + version+ ".TEMP", " -DautoVersionSubmodules=true");
-            executeCommand("sed", true, "-i", "s/" + version+ ".TEMP-SNAPHOT" + "/" + version +"/g", "**/pom.xml");
+            executeCommand(sedMvn, true, "-i", "s/" + version+ ".TEMP-SNAPHOT" + "/" + version + "/g", "**/pom.xml");
         }
     }
 
