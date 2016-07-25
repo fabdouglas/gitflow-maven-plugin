@@ -43,9 +43,9 @@ import org.codehaus.plexus.util.cli.Commandline;
 public abstract class AbstractGitFlowMojo extends AbstractMojo {
 
     /** A full name of the versions-maven-plugin set goal. */
-    private static final String VERSIONS_MAVEN_PLUGIN_SET_GOAL = "org.codehaus.mojo:versions-maven-plugin:2.2:set org.codehaus.mojo:versions-maven-plugin:2.2:versions:update-child-modules";
+    private static final String VERSIONS_MAVEN_PLUGIN_SET_GOAL = "org.codehaus.mojo:versions-maven-plugin:2.2:set org.codehaus.mojo:versions-maven-plugin:2.2:update-child-modules";
     /** Name of the tycho-versions-plugin set-version goal. */
-    private static final String TYCHO_VERSIONS_PLUGIN_SET_GOAL = "org.eclipse.tycho:tycho-versions-plugin:set-version org.codehaus.mojo:versions-maven-plugin:2.2:versions:update-child-modules";
+    private static final String TYCHO_VERSIONS_PLUGIN_SET_GOAL = "org.eclipse.tycho:tycho-versions-plugin:set-version org.codehaus.mojo:versions-maven-plugin:2.2:update-child-modules";
 
     /** System line separator. */
     protected static final String LS = System.getProperty("line.separator");
