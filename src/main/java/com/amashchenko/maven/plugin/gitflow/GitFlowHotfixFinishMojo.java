@@ -172,7 +172,7 @@ public class GitFlowHotfixFinishMojo extends AbstractGitFlowMojo {
                 mvnSetVersions(nextSnapshotVersion);
 
                 // git commit -a -m updating for next development version
-                gitCommit(commitMessages.getHotfixFinishMessage());
+                gitCommit(commitMessages.getHotfixFinishMessage(), currentVersion);
             }
 
             if (!keepBranch) {

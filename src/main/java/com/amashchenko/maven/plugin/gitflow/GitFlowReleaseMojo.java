@@ -142,7 +142,7 @@ public class GitFlowReleaseMojo extends AbstractGitFlowMojo {
                 mvnSetVersions(version);
 
                 // git commit -a -m updating versions for release
-                gitCommit(commitMessages.getReleaseStartMessage());
+                gitCommit(commitMessages.getReleaseStartMessage(), version);
             }
 
             // git checkout master
@@ -190,7 +190,7 @@ public class GitFlowReleaseMojo extends AbstractGitFlowMojo {
             mvnSetVersions(nextSnapshotVersion);
 
             // git commit -a -m updating for next development version
-            gitCommit(commitMessages.getReleaseFinishMessage());
+            gitCommit(commitMessages.getReleaseFinishMessage(), version);
         } catch (CommandLineException e) {
             getLog().error(e);
         }

@@ -147,7 +147,7 @@ public class GitFlowReleaseFinishMojo extends AbstractGitFlowMojo {
             mvnSetVersions(nextSnapshotVersion);
 
             // git commit -a -m updating for next development version
-            gitCommit(commitMessages.getReleaseFinishMessage());
+            gitCommit(commitMessages.getReleaseFinishMessage(), currentVersion);
 
             if (!keepBranch) {
                 // git branch -d release/...

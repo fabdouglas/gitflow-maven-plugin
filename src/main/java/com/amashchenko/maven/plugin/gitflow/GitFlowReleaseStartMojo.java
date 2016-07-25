@@ -130,7 +130,7 @@ public class GitFlowReleaseStartMojo extends AbstractGitFlowMojo {
                 mvnSetVersions(version);
 
                 // git commit -a -m updating versions for release
-                gitCommit(commitMessages.getReleaseStartMessage());
+                gitCommit(commitMessages.getReleaseStartMessage(), version);
             }
 
             mvnGoals();

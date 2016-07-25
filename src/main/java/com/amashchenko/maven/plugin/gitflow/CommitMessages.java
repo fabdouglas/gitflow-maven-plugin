@@ -17,9 +17,9 @@ package com.amashchenko.maven.plugin.gitflow;
 
 /**
  * Git commit messages.
- * 
+ *
  * @author Aleksandr Mashchenko
- * 
+ *
  */
 public class CommitMessages {
     private String featureStartMessage;
@@ -35,14 +35,14 @@ public class CommitMessages {
     private String tagReleaseMessage;
 
     public CommitMessages() {
-        featureStartMessage = "updating versions for feature branch";
-        featureFinishMessage = "updating versions for development branch";
+        featureStartMessage = "updating versions for feature branch {}";
+        featureFinishMessage = "updating versions for development branch {}";
 
-        hotfixStartMessage = "updating versions for hotfix";
-        hotfixFinishMessage = "updating for next development version";
+        hotfixStartMessage = "updating versions for hotfix {}";
+        hotfixFinishMessage = "updating for next development version {}";
 
-        releaseStartMessage = "updating versions for release";
-        releaseFinishMessage = "updating for next development version";
+        releaseStartMessage = "updating versions for release {}";
+        releaseFinishMessage = "updating for next development version {}";
 
         tagHotfixMessage = "tagging hotfix";
         tagReleaseMessage = "tagging release";
